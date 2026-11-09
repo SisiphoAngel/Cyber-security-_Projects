@@ -1,1 +1,21 @@
+SOC Incident Report – Phishing: Unfolding
+
+1. Executive Summary
+On 04 August 2026, an inbound email alert was generated after a suspicious email was received from an external sender. I investigated the alert using Kibana by reviewing the original email event and searching for related activity using the sender and recipient fields. The email contained scam style content with unrealistic financial promises. Based on the evidence collected, I classified the alert as a True Positive with a Low severity because there was no evidence that the recipient interacted with the email or that the organisation was compromised.
+
+2. Incident Details
+Date and Time: 04 August 2026 18:11:06
+Datasource: Email
+Direction: Inbound
+Sender: griffin@hatventuresworldwide.online
+Recipient: armaan.terry@tryhatme.com
+Subject: Work from Home and Make 10000 a Day Scam Alert
+Attachment: None
+
+3. Investigation Timeline
+I reviewed the original email alert in Kibana to identify the sender, recipient and subject. I then searched for the sender and found one matching email event. After that I searched for the recipient and found several inbound emails, including normal business emails and other scam style emails. I compared the available events and found no evidence that the recipient interacted with the suspicious email. No attachments or additional malicious activity were identified.
+
+4. Evidence and Analysis
+The investigation was completed using Kibana only. The sender search confirmed that only one email was associated with the sender. The recipient search showed multiple inbound emails, providing useful context for the investigation. The investigated email stood out because of its unrealistic work from home offer and unusual sender domain.
+Figure 1. Sender search results.
 
