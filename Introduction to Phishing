@@ -1,1 +1,45 @@
+SOC Incident Report
+Introduction to Phishing
+
+
+1. Executive Summary
+On 04 August 2026, a firewall alert was generated after an internal computer attempted to access a blacklisted external URL. I investigated the alert using Kibana by reviewing firewall logs and searching for related activity from the same source IP address. The investigation showed that the user carried out a normal Google search before attempting to access a Bit.ly shortened link that was blocked by the firewall. No additional suspicious activity or evidence of compromise was identified. I classified the incident as a True Positive with a Low severity rating because the firewall successfully prevented the connection.
+
+2. Incident Details
+Date and Time: 04 August 2026 14:53:52
+Alert Source: Firewall
+Alert Type: Blocked Website
+Datasource: Firewall
+Affected Asset: 10.20.2.17
+Destination IP: 67.199.248.11
+URL: http://bit.ly/3sHkX3da12340
+Action: Blocked
+Rule: Blocked Websites
+
+3. Investigation Timeline
+I started by reviewing the original firewall alert in Kibana. The alert showed that the internal host 10.20.2.17 attempted to access a Bit.ly shortened URL. The firewall blocked the connection because the website matched the organisation's blocked website policy. I then searched for additional activity from the same source IP address. I found another firewall event about two minutes earlier showing the same user performing a Google search for 'how to set up payroll system for small business'. This appeared to be normal browsing activity. I reviewed the available events around the same time and did not find any further suspicious connections or signs that the endpoint had been compromised.
+4. Evidence and Analysis
+The investigation was completed using Kibana only. I searched for events related to SourceIP 10.20.2.17 and compared the timestamps to build a timeline. The results showed one allowed Google search followed by one blocked request to a Bit.ly URL. This showed that the firewall successfully prevented access to a blacklisted website.
+
+5. Indicators of Compromise (IOCs)
+• Source IP: 10.20.2.17
+• Destination IP: 67.199.248.11
+• URL: http://bit.ly/3sHkX3da12340
+• Protocol: TCP
+• Destination Port: 80
+• Firewall Rule: Blocked Websites
+6. Verdict and Severity
+Verdict: True Positive
+Severity: Low
+
+The alert is classified as a True Positive because the firewall detected and blocked an attempt to access a blacklisted website. Based on the Kibana logs, there was no evidence that the endpoint was compromised.
+
+7. Recommendations and Remediation
+• Continue monitoring the affected endpoint.
+• Review browser history if available to identify how the user reached the Bit.ly link.
+• Remind users not to click unknown or shortened links.
+• Keep firewall block lists up to date.
+
+8. Lessons Learned
+This investigation showed the importance of reviewing events before and after an alert. Building a timeline using Kibana helped me understand what happened and supported my conclusion using evidence from the SIEM.
 
